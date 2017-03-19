@@ -2,18 +2,28 @@
   box-sizing: border-box; }
 
 html {
+  color: #333;
   font-family: 'Ubuntu', sans-serif;
   font-size: 16px; }
 
 body {
-  background-color: #FFC400; }
+  background-color: #FFC400;
+  margin: 0; }
 
 h1 {
   text-align: center; }
 
+label {
+  cursor: pointer; }
+
 .wrapper {
   margin: 0 auto;
   max-width: 1024px; }
+
+.settings {
+  margin-bottom: 2rem;
+  padding: 1rem;
+  text-align: center; }
 
 .list {
   list-style-type: none;
@@ -25,11 +35,30 @@ h1 {
   border-radius: 0.5rem;
   display: block;
   padding: 1rem 2rem; }
+  .list__item:after {
+    clear: both;
+    content: "";
+    display: table; }
   .list__item + .list__item {
-    margin-top: 1rem; }
+    margin-top: 2rem; }
+
+.list__info {
+  float: left; }
 
 .list__title {
+  font-weight: normal;
   margin: 0; }
+
+.list__counter {
+  float: right;
+  text-align: right; }
+
+.list__value {
+  display: block;
+  font-size: 1.4rem; }
+
+.list__unit {
+  color: #333; }
 
 .circle {
   width: 200px;
@@ -47,3 +76,7 @@ h1 {
   border-radius: 50%;
   left: 50%;
   transition: all 1s; }
+
+@media only screen and (max-device-width: 414px), only screen and (max-width: 414px) {
+  .wrapper {
+    padding: 0 1rem; } }

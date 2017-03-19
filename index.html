@@ -6,39 +6,113 @@
     <meta name="viewport" content="width=device-width">
     <title>Födelsedagar</title>
     <link href="https://fonts.googleapis.com/css?family=Ubuntu" rel="stylesheet">
-    <link href="/dist/core.css?v=81a24d815c341fd1c0de2c66c2b82dcd" rel="stylesheet" />
+    <link href="dist/core.css?v=98d7ef17098ac6cadbf2edaebb920939" rel="stylesheet" />
     <script src="https://code.jquery.com/jquery-1.12.4.min.js" integrity="sha256-ZosEbRLbNQzLpnKIkEdrPv7lOy9C27hHQ+Xp8a4MxAQ=" crossorigin="anonymous"></script>
     <script>
+        var interval;
         $(function() {
             $(document).on("click", ".button", function() {
-                var c = $(".circle");
-                var cc = $(".circle__center");
-                var r = Math.floor((Math.random() * 200) + 1);
-                
-                cc.css({ "height" : r, "width": r, "top" : "calc(50% - " + (r/2) + "px)", "left" : "calc(50% - " + (r/2) + "px)" });
+                // var c = $(".circle");
+                // var cc = $(".circle__center");
+                // var r = Math.floor((Math.random() * 200) + 1);
+                // cc.css({ "height" : r, "width": r, "top" : "calc(50% - " + (r/2) + "px)", "left" : "calc(50% - " + (r/2) + "px)" });
             });
+            calculate();
+            interval = setInterval(
+                function() {
+                    calculate();
+                },
+                10000
+            )
         });
+        function calculate() {
+            var date = new Date();
+            $(".js-birthday").each(function(index) {
+                var date = $(this).find(".js-dates"),
+                    bmonth = date.data("bmonth"),
+                    bday = date.data("bday");
+                var today = new Date(),
+                    birthday = new Date(today.getFullYear(), bmonth, bday),
+                    diffMs = Math.abs( (today.getTime() - birthday.getTime()) ),
+                    diffDays = Math.round(diffMs/(60*60*24*1000)),
+                    diffMin = Math.round(diffMs/(60*24*1000)),
+                    diffSec = Math.round(diffMs/1000),
+                    unit = "dagar";
+                if(document.settings.display.value === 'minutes') {
+                    diffDays = diffMin;
+                    unit = "minuter";
+                } else if(document.settings.display.value === 'seconds') {
+                    diffDays = diffSec;
+                    unit = "sekunder";
+                }
+                $(this).find(".js-counter-value").text(diffDays);
+                $(this).find(".js-counter-unit").text(unit);
+            });
+        }
     </script>
 </head>
 <body>
     <header class="wrapper">
-        <h1>Lorem ipsum</h1>
-        <input type="button" class="button" value="foppa" />
+        <h1>Nedräkning</h1>
+        <!--<input type="button" class="button" value="foppa" />-->
     </header>
     <main class="wrapper">
+        <form name="settings">
+        <div class="settings">
+            <label>
+                Dagar
+                <input type="radio" name="display" value="days" checked>
+            </label>
+            <label>
+                Minuter
+                <input type="radio" name="display" value="minutes">
+            </label>
+            <label>
+                Sekunder
+                <input type="radio" name="display" value="seconds">
+            </label>
+        </div>
+        </form>
         <ul class="list">
-            <li class="list__item">
-                <h2 class="list__title">Lorem</h2>
-                <div class="list__bday">12334</div>
-                <div class="list__counter">12334</div>
-                <div class="circle">
-                    <div class="circle__center"></div>
+            <li class="list__item js-birthday">
+                <div class="list__info">
+                    <h2 class="list__title">John</h2>
+                    <div class="list__bday js-dates" data-bmonth="4" data-bday="2">2 maj</div>
+                </div>
+                <div class="list__counter js-counter">
+                    <span class="list__value js-counter-value"></span>
+                    <span class="list__unit js-counter-unit"></span>
                 </div>
             </li>
-            <li class="list__item">
-                <h2 class="list__title">Ipsum</h2>
-                <div class="list__bday">12334</div>
-                <div class="list__counter">12334</div>
+            <li class="list__item js-birthday">
+                <div class="list__info">
+                <h2 class="list__title">Nils</h2>
+                <div class="list__bday js-dates" data-bmonth="6" data-bday="9">9 juli</div>
+                </div>
+                <div class="list__counter js-counter">
+                    <span class="list__value js-counter-value"></span>
+                    <span class="list__unit js-counter-unit"></span>
+                </div>
+            </li>
+            <li class="list__item js-birthday">
+                <div class="list__info">
+                <h2 class="list__title">Petra</h2>
+                <div class="list__bday js-dates" data-bmonth="9" data-bday="18">18 oktober</div>
+                </div>
+                <div class="list__counter js-counter">
+                    <span class="list__value js-counter-value"></span>
+                    <span class="list__unit js-counter-unit"></span>
+                </div>
+            </li>
+            <li class="list__item js-birthday">
+                <div class="list__info">
+                <h2 class="list__title">Henrik</h2>
+                <div class="list__bday js-dates" data-bmonth="6" data-bday="28">28 juli</div>
+                </div>
+                <div class="list__counter js-counter">
+                    <span class="list__value js-counter-value"></span>
+                    <span class="list__unit js-counter-unit"></span>
+                </div>
             </li>
         </ul>
     </main>
