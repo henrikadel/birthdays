@@ -1,0 +1,22 @@
+* {
+  box-sizing: border-box; }
+
+html {
+  font-family: 'Ubuntu', sans-serif;
+  font-size: 16px; }
+
+body {
+  background-color: #FFC400; }
+
+.wrapper {
+  margin: 0 auto;
+  max-width: 1024px; }
+
+.list {
+  list-style-type: none;
+  margin: 0;
+  padding: 0; }
+
+.list__item {
+  background-color: #f4f4f4;
+  display: block; }
