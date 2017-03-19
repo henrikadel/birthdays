@@ -14,8 +14,9 @@
                 var c = $(".circle");
                 var cc = $(".circle__center");
                 var r = Math.floor((Math.random() * 200) + 1);
+                // var top = c.outherHei
                 
-                cc.css({ "height" : r, "width": r, "top" : calc(50% - (r/2)) + "px", "left" : calc(50% - (r/2)) + "px" });
+                cc.css({ "height" : r, "width": r, "top" : "calc(50% - " + (r/2) + "px)", "left" : "calc(50% - " + (r/2) + "px)" });
             });
         });
     </script>
