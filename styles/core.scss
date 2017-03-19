@@ -11,6 +11,10 @@ body {
     background-color: #FFC400;
 }
 
+h1 {
+    text-align: center;
+}
+
 .wrapper {
     margin: 0 auto;
     max-width: 1024px;
@@ -24,10 +28,18 @@ body {
 
 .list__item {
     background-color: #f4f4f4;
+    border-radius: 0.5rem;
     display: block;
+    padding: 1rem 2rem;
+
+    & + .list__item {
+        margin-top: 1rem;
+    }
 }
 
-.list__title {}
+.list__title {
+    margin: 0;
+}
 
 .list__bday {}
 

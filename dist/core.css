@@ -8,6 +8,9 @@ html {
 body {
   background-color: #FFC400; }
 
+h1 {
+  text-align: center; }
+
 .wrapper {
   margin: 0 auto;
   max-width: 1024px; }
@@ -19,4 +22,11 @@ body {
 
 .list__item {
   background-color: #f4f4f4;
-  display: block; }
+  border-radius: 0.5rem;
+  display: block;
+  padding: 1rem 2rem; }
+  .list__item + .list__item {
+    margin-top: 1rem; }
+
+.list__title {
+  margin: 0; }
