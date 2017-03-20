@@ -34,23 +34,28 @@
                 var today = new Date(),
                     birthday = new Date(today.getFullYear(), bmonth, bday),
                     diffMs = Math.abs( (today.getTime() - birthday.getTime()) ),
+                    value = 0,
                     diffDays = Math.round(diffMs/(1000*60*60*24)),
+                    diffHours = Math.round(diffMs/(1000*60*60)),
                     diffMin = Math.round(diffMs/(1000*60)),
                     diffSec = Math.round(diffMs/1000),
                     unit = "sekunder";
 
-                diffDays = diffSec;
+                value = diffSec;
 
-                if(document.settings.display.value === 'minutes') {
-                    diffDays = diffMin;
+                if(document.settings.display.value === 'hours') {
+                    value = diffHours;
+                    unit = "timmar";
+                } else if(document.settings.display.value === 'minutes') {
+                    value = diffMin;
                     unit = "minuter";
                 } else if(document.settings.display.value === 'days') {
-                    diffDays = diffDays;
+                    value = diffDays;
                     unit = "dagar";
                 }
                 // console.log(diffMs)
                 // $(this).find(".foppa").text(document.forms['settings'].display.value)
-                $(this).find(".js-counter-value").text(diffDays.toLocaleString());
+                $(this).find(".js-counter-value").text(value.toLocaleString());
                 $(this).find(".js-counter-unit").text(unit);
             });
         }
@@ -67,6 +72,10 @@
             <label>
                 Dagar
                 <input type="radio" name="display" value="days">
+            </label>
+            <label>
+                Timmar
+                <input type="radio" name="display" value="hours">
             </label>
             <label>
                 Minuter
