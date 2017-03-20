@@ -22,7 +22,7 @@
                 function() {
                     calculate();
                 },
-                1000
+                2000
             )
         });
         function calculate() {
@@ -34,8 +34,8 @@
                 var today = new Date(),
                     birthday = new Date(today.getFullYear(), bmonth, bday),
                     diffMs = Math.abs( (today.getTime() - birthday.getTime()) ),
-                    diffDays = Math.round(diffMs/(60*60*24*1000)),
-                    diffMin = Math.round(diffMs/(60*24*1000)),
+                    diffDays = Math.round(diffMs/(1000*60*60*24)),
+                    diffMin = Math.round(diffMs/(1000*60)),
                     diffSec = Math.round(diffMs/1000),
                     unit = "dagar";
                 if(document.settings.display.value === 'minutes') {
@@ -45,7 +45,9 @@
                     diffDays = diffSec;
                     unit = "sekunder";
                 }
-                $(this).find(".js-counter-value").text(diffDays);
+                // console.log(diffMs)
+                $(this).find(".foppa").text(diffMs)
+                $(this).find(".js-counter-value").text(diffDays.toLocaleString());
                 $(this).find(".js-counter-unit").text(unit);
             });
         }
@@ -74,6 +76,16 @@
         </div>
         </form>
         <ul class="list">
+            <li class="list__item js-birthday">
+                <div class="list__info">
+                    <h2 class="list__title">Test (<span class="foppa"></span>)</h2>
+                    <div class="list__bday js-dates" data-bmonth="2" data-bday="21">21 mars</div>
+                </div>
+                <div class="list__counter js-counter">
+                    <span class="list__value js-counter-value"></span>
+                    <span class="list__unit js-counter-unit"></span>
+                </div>
+            </li>
             <li class="list__item js-birthday">
                 <div class="list__info">
                     <h2 class="list__title">John</h2>
