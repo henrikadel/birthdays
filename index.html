@@ -38,15 +38,18 @@
                     diffMin = Math.round(diffMs/(1000*60)),
                     diffSec = Math.round(diffMs/1000),
                     unit = "dagar";
+
+                diffDays = diffSec;
+
                 if(document.settings.display.value === 'minutes') {
                     diffDays = diffMin;
                     unit = "minuter";
-                } else if(document.settings.display.value === 'seconds') {
-                    diffDays = diffSec;
-                    unit = "sekunder";
+                } else if(document.settings.display.value === 'days') {
+                    diffDays = diffDays;
+                    unit = "dagar";
                 }
                 // console.log(diffMs)
-                $(this).find(".foppa").text(document.forms['settings'].display.value)
+                // $(this).find(".foppa").text(document.forms['settings'].display.value)
                 $(this).find(".js-counter-value").text(diffDays.toLocaleString());
                 $(this).find(".js-counter-unit").text(unit);
             });
@@ -76,16 +79,6 @@
         </div>
         </form>
         <ul class="list">
-            <li class="list__item js-birthday">
-                <div class="list__info">
-                    <h2 class="list__title">Test (<span class="foppa"></span>)</h2>
-                    <div class="list__bday js-dates" data-bmonth="2" data-bday="21">21 mars</div>
-                </div>
-                <div class="list__counter js-counter">
-                    <span class="list__value js-counter-value"></span>
-                    <span class="list__unit js-counter-unit"></span>
-                </div>
-            </li>
             <li class="list__item js-birthday">
                 <div class="list__info">
                     <h2 class="list__title">John</h2>
