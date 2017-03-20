@@ -46,7 +46,7 @@
                     unit = "sekunder";
                 }
                 // console.log(diffMs)
-                $(this).find(".foppa").text(document.settings.display.value)
+                $(this).find(".foppa").text(document.forms['settings'].display.value)
                 $(this).find(".js-counter-value").text(diffDays.toLocaleString());
                 $(this).find(".js-counter-unit").text(unit);
             });
